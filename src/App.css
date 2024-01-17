@@ -1,54 +1,102 @@
-
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white; /* Set a background color for the body */
+}
 
 .app-container {
-  background-color: #494b5b;
-  width: 100vw;
-  height: 100vh; 
+  height: 100vh; /* Make app-container take the full height of the viewport */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;
+  justify-content: center;
+  background-color: white; 
 }
 
 .home-container {
-  padding-top: 10%;
-  padding-left: 30%;
-  background-color: #494b5b;
-
+  background-color: white;
+  text-align: center;
 }
 
 .home-title {
   margin-bottom: 20px;
-  color: white;
-  font-size: large;
+  color: black;
+  font-size: 40px;
   font-weight: bold;
 }
 
+.summarize-container {
+  width: 100%;
+}
+
 .input-textarea {
-  width: 80%;
-  height: 150px;
-  padding: 12px 20px;
-  /* box-sizing: border-box;
-  border: 2px solid #ccc; */
-  border-radius: 4px;
-  background-color: #494b5b;
+  width: 900px;
+  height: 400px;
+  max-height: 400px; /* Set the maximum height */
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: white;
   font-size: 16px;
-  color: white;
-  overflow: auto;
-  outline: none;
+  color: black;
+  overflow: auto; /* Hide the default scrollbar */
+  box-sizing: border-box; /* Optional: Include padding and border in the element's total width and height */
+  padding: 10px;
+  /* Custom scrollbar for webkit-based browsers */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  outline-color: rgb(32, 184, 207);
+}
+
+.input-textarea::-webkit-scrollbar {
+  width: 1px; /* Set the width of the scrollbar */
+}
+
+.input-textarea::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Set the color of the thumb (the moving part of the scrollbar) */
 }
 
 .loading-message {
+  color: rgb(6 78 59);
+}
+
+.submit-button {
+  border: 1px solid black;
   color: white;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: box-shadow 0.3s ease; 
+  cursor: pointer;
+  margin-top: 20px;
+  background-color: #0d8065;
+}
+
+.submit-button:hover {
+  background-color: rgb(6 78 59);
+}
+
+.submit-button:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a box-shadow effect on click */
 }
 
 .response-textarea {
-  border: none;
-  width: 80%;
-  height: 150px;
-  padding: 12px 20px;
+  margin-top: 20px;
+  border-color: rgb(209 250 229);
+  width: 900px;
+  height: 100px;
   /* box-sizing: border-box;
   border: 2px solid #ccc; */
   border-radius: 4px;
-  background-color: #494b5b;
+  background-color: rgb(236 253 245);
   font-size: 16px;
-  color: white;
+  color: rgb(6 78 59);
   overflow: auto;
   outline: none;
 }

@@ -1,80 +1,79 @@
-import React, { useState } from 'react';
-import { json } from 'react-router-dom';
+import React, { useState } from 'react'
+import { json } from 'react-router-dom'
 
 const Home = () => {
-  const [text, setText] = useState('');
-  const [responseText, setResponseText] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [text, setText] = useState('')
+  const [responseText, setResponseText] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [display, setDisplay] = useState(false)
 
-  const handleInputChange = async (event) => {
-    setText(event.target.value);
-    autoResize(); 
-    if (event.key === 'Enter') {
-        setLoading(true);
-  
-        try {
-          const res = await query({ "inputs": text });
-  
-          if (res[0].summary_text) {
-            setResponseText(res[0].summary_text);
-          }
-        } catch {
-          setResponseText('Xảy ra lỗi. Vui lòng thử lại');
-        } finally {
-          setLoading(false);
-        }
+  const handleInputChange = (event) => {
+    setText(event.target.value)
+  }
+
+  const handleSubmit = async (event) => {
+    setLoading(true)
+    setDisplay(true)
+    try {
+      const res = await query({ text: text })
+
+      if (res.summary) {
+        setResponseText(res.summary)
       }
-  };
-
-  const autoResize = () => {
-    const textarea = document.getElementById('autoResizableTextarea');
-    if (textarea) {
-      textarea.style.height = 'auto'; // Reset height to auto to calculate the new height
-      textarea.style.height = textarea.scrollHeight + 'px'; // Set the new height
+    } catch {
+      setResponseText('Xảy ra lỗi. Vui lòng thử lại')
+    } finally {
+      setLoading(false)
     }
-  };
+  }
 
   async function query(data) {
-    const response = await fetch(
-      "https://api-inference.huggingface.co/models/VietAI/vit5-large-vietnews-summarization",
-      {
-        headers: { Authorization: "Bearer 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" },
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    );
-    const result = await response.json();
-    return result;
+    //await new Promise(resolve => setTimeout(resolve, 2000));
+    const response = await fetch('http://192.168.31.100:8080/summrize', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    console.log(response)
+    const result = await response.json()
+    return result
   }
 
   return (
-    <div className='home-container'>
-      <div className='home-title'>Nhập đoạn văn cần tóm tắt vào đây</div>
-      <div className='home-body'>
-        <textarea
-          className='input-textarea'
-          id='autoResizableTextarea'
-          placeholder='Enter text here...'
-          value={text}
-          onChange={handleInputChange}
-          onKeyDown={handleInputChange} // Listen for keydown event
-        />
-       <div className='response-container'>
-          {loading ? (
-            <div className='loading-message'>Đang tóm tắt. Vui lòng đợi...</div>
-          ) : (
+    <div className="home-container">
+      <div className="home-title">Công cụ tóm tắt miễn phí</div>
+      <div className="home-body">
+        <div className="summarize-container">
+          <textarea
+            className="input-textarea"
+            id="autoResizableTextarea"
+            placeholder="Nhập đoạn văn cần tóm tắt vào đây..."
+            value={text}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="submit-button" onClick={handleSubmit}>
+          Tóm tắt
+        </div>
+        <div className="response-container">
+          {!loading && display && (
             <textarea
-              className='response-textarea'
-              id='responseTextarea'
+              className="response-textarea"
+              id="responseTextarea"
               value={responseText}
               readOnly
             />
           )}
+
+          {loading && display && (
+            <div className="loading-message">Đang tóm tắt. Vui lòng đợi...</div>
+          )}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
-
+export default Home
