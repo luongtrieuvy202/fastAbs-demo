@@ -29,13 +29,16 @@ const Home = () => {
 
   async function query(data) {
     //await new Promise(resolve => setTimeout(resolve, 2000));
-    const response = await fetch('http://192.168.31.100:8080/summrize', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      'https://8a00-171-243-48-201.ngrok-free.app/summrize',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    })
+    )
     console.log(response)
     const result = await response.json()
     return result
@@ -43,7 +46,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="home-title">Công cụ tóm tắt miễn phí</div>
+      <div className="home-title">Mô hình tóm tắt văn bản</div>
       <div className="home-body">
         <div className="summarize-container">
           <textarea

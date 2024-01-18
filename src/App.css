@@ -5,13 +5,13 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: white; /* Set a background color for the body */
+  background-color: white; 
 }
 
 .app-container {
-  height: 100vh; /* Make app-container take the full height of the viewport */
+  height: 100vh; 
   display: flex;
-  flex-direction: column; /* Stack children vertically */
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
   background-color: white; 
@@ -20,6 +20,8 @@ body {
 .home-container {
   background-color: white;
   text-align: center;
+  padding-bottom: 10rem;
+  margin-top: 20px;
 }
 
 .home-title {
@@ -34,9 +36,9 @@ body {
 }
 
 .input-textarea {
-  width: 900px;
-  height: 400px;
-  max-height: 400px; /* Set the maximum height */
+  width: 50vw;
+  height: 40vh;
+  max-height: 30vh; /* Set the maximum height */
   border: 1px solid #ccc;
   border-radius: 15px;
   background-color: white;
@@ -44,7 +46,7 @@ body {
   color: black;
   overflow: auto; /* Hide the default scrollbar */
   box-sizing: border-box; /* Optional: Include padding and border in the element's total width and height */
-  padding: 10px;
+  padding: 9px;
   /* Custom scrollbar for webkit-based browsers */
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
@@ -66,15 +68,15 @@ body {
 .submit-button {
   border: 1px solid black;
   color: white;
-  width: 80px;
-  height: 30px;
+  width: 4rem;
+  height: 2rem;
   border-radius: 10px;
   align-items: center;
   display: flex;
   justify-content: center;
   transition: box-shadow 0.3s ease; 
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 3vh;
   background-color: #0d8065;
 }
 
@@ -87,10 +89,10 @@ body {
 }
 
 .response-textarea {
-  margin-top: 20px;
+  margin-top: 4vh;
   border-color: rgb(209 250 229);
-  width: 900px;
-  height: 100px;
+  width: 50vw;
+  height: 15vh;
   /* box-sizing: border-box;
   border: 2px solid #ccc; */
   border-radius: 4px;
@@ -99,4 +101,41 @@ body {
   color: rgb(6 78 59);
   overflow: auto;
   outline: none;
+}
+
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 20px;
+  }
+
+  .home-title {
+    font-size: 20px; 
+  }
+
+  .input-textarea {
+    width: 80vw; 
+    height: 50vh; 
+    font-size: 14px; 
+  }
+
+  .submit-button {
+    padding-top: 5px;
+    margin: 0 auto; 
+    display: block; 
+  }
+
+  .response-textarea {
+    width: 80vw; 
+    height: 18vh; 
+  }
+
+  .loading-message {
+    padding-top: 10px;
+  }
+
+  .home-container {
+    background-color: white;
+    text-align: center;
+  }
 }
